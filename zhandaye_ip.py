@@ -23,21 +23,14 @@ class ZDYProxy(CrawlerBase):
             ip = i.xpath('./td[1]/text()')[0]
             port = i.xpath('./td[2]/text()')[0]
             dicts["https"] = f"https://{ip}:{port}"
+            # print(dicts)
             yield self.ip_verify(dicts)
-            time.sleep(5)
-
-    def run(self):
-        params = {"https": 1}
-        p = {
-            'https': 'https://117.161.75.82:3128'
-        }
-        res = self.make_response(method='GET', url=self.url_ip, headers=self.headers, params=params, proxies=p)
-        print(res.text)
-        text = self.parse(res.text)
-        print(res.text)
-        self.save_csv(text)
+            time.sleep(10)
 
 
 if __name__ == '__main__':
-    de = ZDYProxy()
-    de.run()
+    zdy = ZDYProxy()
+    params = {"https": 1}
+    dats = zdy.run(url=zdy.url_ip, method='GET', headers=zdy.headers, params=params, proxies=zdy.proxies)
+    for dat in dats:
+        zdy.ip_save_to_mongodb(dat)
