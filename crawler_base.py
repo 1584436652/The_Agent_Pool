@@ -74,6 +74,15 @@ class CrawlerBase(object):
 
 if __name__ == '__main__':
     #  'https': 'https://58.47.159.147:8001'
-    p = {'https': 'https://113.214.48.5:8000'}
+    proxy_ip = [
+        {'https': 'https://113.214.48.5:8000'},
+        {'https': 'https://58.47.159.147:8001'},
+        {'https': 'https://113.238.142.208:3128'},
+        {'https': 'https://120.52.73.105:18080'},
+        {'https': 'https://223.100.215.25:8080'},
+        # {'https': 'https://58.209.234.8:3389'},
+        {'https': 'https://117.161.75.82:3128'}
+    ]
+    p = {'https': 'https://120.52.73.105:18080'}
     de = CrawlerBase()
     de.ip_verify(p)
